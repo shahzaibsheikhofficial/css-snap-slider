@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Snap Slider | Live Demo</title>
+<meta name="description" content="A CSS-only responsive slider. Desktop stays a normal row; tablet and mobile become a smooth one-item-at-a-time swipe slider. No JavaScript.">
+
+<!-- THE SLIDER CSS: loaded ONLY on tablet and mobile (this is the "add it inside the breakpoint" step) -->
+<link rel="stylesheet" href="snap-slider.css" media="(max-width: 1024px)">
+
+<!-- Demo page styling (not part of the slider) -->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#f5f7fb;color:#16202e;line-height:1.6}
+.wrap{max-width:1100px;margin:auto;padding:0 20px}
+header{padding:56px 0 24px}
+h1{font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.15;margin-bottom:10px}
+header p{color:#566175;max-width:640px}
+.badge{display:inline-block;margin-top:18px;padding:7px 14px;border-radius:99px;background:#16202e;color:#fff;font-size:.85rem;font-weight:500}
+.badge::after{content:"🖥 Desktop: normal row"}
+section{padding:28px 0}
+h2{font-size:1.3rem;margin-bottom:14px}
+
+/* Demo layout for desktop: a normal row */
+.slider-track{display:flex;gap:16px}
+@media(min-width:1025px){.slider-item{flex:1}}
+
+/* Demo card design */
+.slider-item{background:#fff;border:1px solid #e1e7f0;border-radius:14px;overflow:hidden}
+.card-img{height:170px;display:grid;place-items:center;color:#fff;font-size:2rem;font-weight:700}
+.card-body{padding:16px}
+.card-body h3{font-size:1.05rem}
+.card-body p{color:#566175;font-size:.9rem;margin:4px 0 12px}
+.card-body span{display:inline-block;background:#16202e;color:#fff;padding:7px 16px;border-radius:8px;font-size:.85rem}
+
+/* Tablet shows ~2 items (the CSS file uses 75% for mobile) */
+@media(min-width:768px) and (max-width:1024px){.snap-slider .slider-track .slider-item{min-width:45%}}
+
+/* Badge text changes by screen size */
+@media(max-width:1024px){.badge::after{content:"📱 Tablet: swipe slider"}}
+@media(max-width:767px){.badge::after{content:"📱 Mobile: swipe slider"}}
+
+/* Instructions */
+.steps{background:#fff;border:1px solid #e1e7f0;border-radius:14px;padding:22px 26px}
+.steps ol{padding-left:20px}
+.steps li{margin-bottom:8px}
+code{background:#eef2f9;padding:2px 7px;border-radius:5px;font-size:.88em}
+pre{background:#0f1724;color:#d6e2f5;padding:20px;border-radius:14px;overflow-x:auto;font-size:.84rem;line-height:1.6}
+.c{color:#7f93b2}
+footer{padding:36px 0 50px;color:#566175;font-size:.9rem;text-align:center}
+footer a{color:#2563eb}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <h1>CSS Snap Slider</h1>
+  <p>Desktop stays a normal row. On tablet and mobile the same row becomes a smooth, swipeable, one-item-at-a-time slider. Pure CSS, no JavaScript.</p>
+  <span class="badge"></span>
+  <p style="margin-top:14px;font-size:.92rem">👉 Resize your browser window or open this page on your phone to see it change.</p>
+</div></header>
+
+<!-- THE DEMO: wrapper class "snap-slider", row class "slider-track", item class "slider-item" -->
+<section><div class="wrap">
+  <h2>Live demo</h2>
+  <div class="snap-slider">
+    <div class="slider-track">
+      <div class="slider-item"><div class="card-img" style="background:linear-gradient(135deg,#4f8cff,#7c5cff)">1</div><div class="card-body"><h3>Item One</h3><p>Swipe sideways on mobile.</p><span>View</span></div></div>
+      <div class="slider-item"><div class="card-img" style="background:linear-gradient(135deg,#22d3a6,#2563eb)">2</div><div class="card-body"><h3>Item Two</h3><p>Each swipe snaps to one item.</p><span>View</span></div></div>
+      <div class="slider-item"><div class="card-img" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">3</div><div class="card-body"><h3>Item Three</h3><p>Smooth scrolling, no scrollbar.</p><span>View</span></div></div>
+      <div class="slider-item"><div class="card-img" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">4</div><div class="card-body"><h3>Item Four</h3><p>Works with any card layout.</p><span>View</span></div></div>
+      <div class="slider-item"><div class="card-img" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">5</div><div class="card-body"><h3>Item Five</h3><p>Products, posts, reviews, more.</p><span>View</span></div></div>
+      <div class="slider-item"><div class="card-img" style="background:linear-gradient(135deg,#84cc16,#059669)">6</div><div class="card-body"><h3>Item Six</h3><p>No JavaScript needed.</p><span>View</span></div></div>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>How to use it</h2>
+  <div class="steps"><ol>
+    <li>Add the class <code>snap-slider</code> to the section that wraps your row.</li>
+    <li>Replace <code>.slider-track</code> with your row container class and <code>.slider-item</code> with your item class.</li>
+    <li>Paste the CSS from <code>snap-slider.css</code> <b>inside your tablet and mobile breakpoints only</b>.</li>
+    <li>Desktop keeps your normal row. Done!</li>
+  </ol></div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>The CSS</h2>
+<pre><span class="c">/* Paste inside your tablet and mobile breakpoints */</span>
+@media (max-width: 1024px) {
+
+  .snap-slider .slider-track {
+    display: flex;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    <span class="c">/* One slide at a time */</span>
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+    scrollbar-width: none;
+  }
+
+  .snap-slider .slider-track::-webkit-scrollbar { display: none; }
+
+  .snap-slider .slider-track .slider-item {
+    min-width: 75%;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .snap-slider .slider-track * {
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+}</pre>
+</div></section>
+
+<footer><div class="wrap">
+  Made by <a href="https://shahzaibsheikhofficial.github.io">Shahzaib Sheikh</a> · WordPress Web Developer · MIT License
+</div></footer>
+
+</body>
+</html>
