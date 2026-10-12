@@ -1,0 +1,52 @@
+/*
+ * Snap Slider (CSS only)
+ * Author: Shahzaib Sheikh | License: MIT
+ *
+ * HOW TO USE
+ * 1. Add the class "snap-slider" to the section that wraps your row.
+ * 2. Replace the class names below with your own:
+ *      .slider-track = the container that holds all the items (the row)
+ *      .slider-item  = each single item inside the row (card, product, etc.)
+ * 3. IMPORTANT: Paste this CSS inside your TABLET and MOBILE breakpoints only,
+ *    for example:  @media (max-width: 1024px) { ...paste here... }
+ *    On desktop nothing changes and your normal row stays as it is.
+ */
+
+/* Row becomes a swipeable slider */
+.snap-slider .slider-track {
+    display: flex;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    /* Snap settings: one slide at a time */
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+}
+
+.snap-slider .slider-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Each item snaps into place */
+.snap-slider .slider-track .slider-item {
+    min-width: 75%; /* item width: 75% on mobile, try 45% on tablet */
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+/* Stop text selection and image dragging */
+.snap-slider .slider-track * {
+    user-select: none;
+    -webkit-user-drag: none;
+}
