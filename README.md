@@ -93,6 +93,9 @@ Works in all modern browsers: Chrome, Edge, Safari, Firefox and mobile browsers.
 
 Released under the [MIT License](LICENSE). Free to use in personal and client projects. Please keep the license notice.
 
+## Changelog
+- v1.0.0: Initial release
+
 ## Author
 
 **Shahzaib Sheikh**, Web Developer
