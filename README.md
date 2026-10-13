@@ -1,4 +1,4 @@
-# CSS Snap Slider
+# CSS Snap Slider Edit
 
 A **CSS-only** responsive slider. On desktop your row stays exactly as it is. On tablet and mobile the same row turns into a smooth, swipeable slider that snaps **one item at a time**, like the product sliders on modern stores.
 
